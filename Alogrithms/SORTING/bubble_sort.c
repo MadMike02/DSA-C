@@ -19,3 +19,5 @@ void main(){
 }
 
 //time complexity -- O(log(n^2))
+//average and worst case - log(n^2)
+//best case - O(n) - means elements are already sorted and have to only access them
