@@ -13,6 +13,9 @@ void insertionAtBeeginning();
 void insertionAtEnd();
 void insertionAtPostion();
 void inverseOfLinkedList();
+int deleteFromStart();
+int deleteFromEnd();
+int deleteFromPostion(int n);
 
 void main()
 {
@@ -213,5 +216,84 @@ void inverseOfLinkedList(){
         stnode=curNode;
         prevNode->nxtptr=tmp;
 
+    }
+}
+
+
+int deleteFromStart(){
+    struct node *tmp,*first;
+    if(stnode == NULL){
+        printf("linked list is empty \n");
+        return 0;
+    }else{
+        tmp=stnode;
+        if(tmp->nxtptr == NULL){
+            free(tmp);
+            
+        }else{
+            first=tmp;
+            tmp=tmp->nxtptr;
+            free(first);
+            stnode=tmp;
+        }
+    }
+}
+
+int deleteFromEnd(){
+    struct node *tmp,*prev;
+    if(stnode == NULL){
+        printf("linked list is empty \n");
+        return 0;
+    }else{
+        tmp=stnode;
+        if(tmp->nxtptr == NULL){
+            free(tmp);
+            
+        }else{
+            while(tmp->nxtptr != NULL){
+                prev=tmp;
+                tmp=tmp->nxtptr;
+            }
+            prev->nxtptr=NULL;
+            free(tmp);
+        }
+    }
+}
+
+int deleteFromPostion(int pos){
+    struct node *tmp,*prev, *next;
+    
+    if(stnode == NULL){
+        printf("linked list is empty \n");
+        return 0;
+    }else{
+        tmp=stnode;
+        if(tmp->nxtptr == NULL){
+            //if first node
+            free(tmp);
+            
+        }else{
+            for(int i=1;i<pos;i++){
+                if(tmp->nxtptr != NULL){
+                    //previos node from tmp
+                    prev=tmp;
+                    //tmp node
+                    tmp=tmp->nxtptr;
+                    //next node from tmp
+                    next=tmp->nxtptr;
+                    
+                }else{
+                    printf("entered size is greater than list size--\n");
+                    prev=NULL;
+                    next=NULL;
+                    break;
+                }
+            }
+            
+            if(prev != NULL && next != NULL){
+                prev->nxtptr=next;
+                free(tmp);
+            }
+        }
     }
 }

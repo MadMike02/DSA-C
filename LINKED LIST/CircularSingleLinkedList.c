@@ -3,6 +3,7 @@
 void createLinkedList(int size);
 void displayList();
 
+
 struct node{
     int data;
     struct node *next;
@@ -62,6 +63,7 @@ void createLinkedList(int size){
 }
 
 void displayList(){
+
     struct node *tmp;
     tmp=head;
     if(tmp == NULL)
@@ -77,3 +79,81 @@ void displayList(){
         }
     }
 }
+
+// int deleteFromStart(){
+//     struct node *tmp,*first;
+//     if(head == NULL){
+//         printf("linked list is empty \n");
+//         return 0;
+//     }else{
+//         tmp=head;
+//         if(tmp->next == NULL){
+//             free(tmp);
+            
+//         }else{
+//             first=tmp;
+//             tmp=tmp->next;
+//             free(first);
+//             head=tmp;
+//         }
+//     }
+// }
+
+// int deleteFromEnd(){
+//     struct node *tmp,*prev;
+//     if(head == NULL){
+//         printf("linked list is empty \n");
+//         return 0;
+//     }else{
+//         tmp=head;
+//         if(tmp->next == NULL){
+//             free(tmp);
+            
+//         }else{
+//             while(tmp->next != NULL){
+//                 prev=tmp;
+//                 tmp=tmp->next;
+//             }
+//             prev->next=NULL;
+//             free(tmp);
+//         }
+//     }
+// }
+
+// int deleteFromPostion(int pos){
+//     struct node *tmp,*prev, *next;
+    
+//     if(head == NULL){
+//         printf("linked list is empty \n");
+//         return 0;
+//     }else{
+//         tmp=head;
+//         if(tmp->next == NULL){
+//             //if first node
+//             free(tmp);
+            
+//         }else{
+//             for(int i=1;i<pos;i++){
+//                 if(tmp->next != NULL){
+//                     //previos node from tmp
+//                     prev=tmp;
+//                     //tmp node
+//                     tmp=tmp->next;
+//                     //next node from tmp
+//                     next=tmp->next;
+                    
+//                 }else{
+//                     printf("entered size is greater than list size--\n");
+//                     prev=NULL;
+//                     next=NULL;
+//                     break;
+//                 }
+//             }
+            
+//             if(prev != NULL && next != NULL){
+//                 prev->next=next;
+//                 free(tmp);
+//             }
+//         }
+//     }
+// }
