@@ -2,7 +2,10 @@
 #include <stdlib.h>
 void createLinkedList(int size);
 void displayList();
-
+void insertionAtEnd();
+void insertionAtPostion();
+void insertionAtBeginning();
+int getListSize();
 
 struct node{
     int data;
@@ -15,6 +18,20 @@ void main(){
     scanf("%d", &n);
     printf("------CREATING LINKED LIST-------\n");
     createLinkedList(n);
+    printf("-----printing list------\n");
+    displayList();
+    // printf("------Inserting At beginning-----\n");
+    // insertionAtBeginning();
+    // printf("-----printing list------\n");
+    // displayList();
+    // printf("------Inserting At ending-----\n");
+    // insertionAtEnd();
+    // printf("-----printing list------\n");
+    // displayList();
+    // printf("-------list size---------");
+    // printf("%d",getListSize());
+    printf("------Inserting At position-----\n");
+    insertionAtPostion();
     printf("-----printing list------\n");
     displayList();
 }
@@ -80,80 +97,116 @@ void displayList(){
     }
 }
 
-// int deleteFromStart(){
-//     struct node *tmp,*first;
-//     if(head == NULL){
-//         printf("linked list is empty \n");
-//         return 0;
-//     }else{
-//         tmp=head;
-//         if(tmp->next == NULL){
-//             free(tmp);
-            
-//         }else{
-//             first=tmp;
-//             tmp=tmp->next;
-//             free(first);
-//             head=tmp;
-//         }
-//     }
-// }
+void insertionAtBeginning(){
+    struct node *newNode,*tmp;
+    newNode = (struct node *)malloc(sizeof(struct node));
+    if(newNode == NULL){
+        printf("Unable to allocate memory\n");
+    }else{
+        int num;
+        tmp=head;
+        printf("enter new node data\n");
+        scanf("%d",&num);
+        newNode->data=num;
 
-// int deleteFromEnd(){
-//     struct node *tmp,*prev;
-//     if(head == NULL){
-//         printf("linked list is empty \n");
-//         return 0;
-//     }else{
-//         tmp=head;
-//         if(tmp->next == NULL){
-//             free(tmp);
+        if(tmp == NULL){
+            newNode->next =NULL;
+            head = newNode;
+        }else{
+            newNode->next = head;
+            //changing last node
+            tmp = tmp->next;
+                //traverse till last node
+                while(tmp->next != head){
+                    tmp = tmp->next; 
+                }
+            tmp->next = newNode;
+            head = newNode;
             
-//         }else{
-//             while(tmp->next != NULL){
-//                 prev=tmp;
-//                 tmp=tmp->next;
-//             }
-//             prev->next=NULL;
-//             free(tmp);
-//         }
-//     }
-// }
+        }
+    }
+}
 
-// int deleteFromPostion(int pos){
-//     struct node *tmp,*prev, *next;
-    
-//     if(head == NULL){
-//         printf("linked list is empty \n");
-//         return 0;
-//     }else{
-//         tmp=head;
-//         if(tmp->next == NULL){
-//             //if first node
-//             free(tmp);
+void insertionAtEnd(){
+    struct node *newNode,*tmp;
+    newNode = (struct node *)malloc(sizeof(struct node));
+    if(newNode == NULL){
+        printf("Unable to allocate memory\n");
+    }else{
+        int num;
+        tmp=head;
+        printf("enter new node data\n");
+        scanf("%d",&num);
+        newNode->data=num;
+
+        if(tmp == NULL){
+            newNode->next =NULL;
+            head = newNode;
+        }else{
+            newNode->next = head;
+            //changing last node
+            tmp = tmp->next;
+                //traverse till last node
+                while(tmp->next != head){
+                    tmp = tmp->next; 
+                }
+            tmp->next = newNode;
             
-//         }else{
-//             for(int i=1;i<pos;i++){
-//                 if(tmp->next != NULL){
-//                     //previos node from tmp
-//                     prev=tmp;
-//                     //tmp node
-//                     tmp=tmp->next;
-//                     //next node from tmp
-//                     next=tmp->next;
-                    
-//                 }else{
-//                     printf("entered size is greater than list size--\n");
-//                     prev=NULL;
-//                     next=NULL;
-//                     break;
-//                 }
-//             }
+        }
+    }
+}
+
+void insertionAtPostion(){
+    int num, toInsertAt, i=1;
+    printf("Enter position to insert  At\n");
+    scanf("%d",&toInsertAt);
+    if(toInsertAt == 1){
+        printf("---INSERTING AT BEGINNING----\n");
+        insertionAtBeginning();
+    }else if(toInsertAt == getListSize()){
+        printf("---INSERTING AT ENDINING----\n");
+        insertionAtEnd();
+    }else{
+        struct node *newNode,*tmp,*prev;
+        newNode = (struct node *)malloc(sizeof(struct node));
+        if(newNode == NULL){
+            printf("cannot allocate memory \n");
+        }else{
+            tmp=head;
             
-//             if(prev != NULL && next != NULL){
-//                 prev->next=next;
-//                 free(tmp);
-//             }
-//         }
-//     }
-// }
+            printf("enter element to insert \n");
+            scanf("%d",&num);
+            
+            while(i != toInsertAt){
+                
+                prev=tmp;
+                tmp=tmp->next;
+                i++;
+            }
+
+            newNode->data=num;
+            prev->next=newNode;
+            newNode->next=tmp;
+        }
+    }
+}
+
+int getListSize(){
+    struct node *tmp;
+    tmp=head;
+    if(tmp == NULL){
+        return 0;
+    }else{
+        int i = 1;
+        if(tmp->next != NULL){
+            i++;
+            tmp = tmp->next;
+            while(tmp->next != head){
+                i++;
+                tmp = tmp->next;
+                
+            } 
+        }
+        return i;
+    }
+}
