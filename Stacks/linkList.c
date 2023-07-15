@@ -8,6 +8,7 @@ struct stack{
 void push();
 void pop();
 void display();
+void displayTop();
 
 void main(){
     int choice;
@@ -18,7 +19,8 @@ void main(){
         printf("Press 1 For push operation\n");
         printf("Press 2 For pop operation\n");
         printf("Press 3 For display operation\n");
-        printf("Press 4 For Exit operation\n");
+        printf("Press 4 For displaying top\n");
+        printf("Press 5 For Exit operation\n");
         printf("-------------------------------------\n");
 
         scanf("%d", &choice);
@@ -36,12 +38,15 @@ void main(){
             display();
             break;
         case 4:
+            displayTop();
+            break;
+        case 5:
             break;
         default:
             printf("Please enter a valid option\n");
             break;
         }
-    } while (choice != 4);
+    } while (choice != 5);
 }
 
 void push(){
@@ -74,6 +79,14 @@ void pop(){
     }else{
         top = head->nxt;
         head = top;
+    }
+}
+
+void displayTop(){
+    if(top == NULL){
+        printf("Stack is underflowed\n");
+    }else{
+        printf("Top Elemen is: %d\n",top->num);
     }
 }
 

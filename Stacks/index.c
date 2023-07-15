@@ -4,6 +4,7 @@ int stack[100], top = -1;
 void push();
 int pop();
 void display();
+void displayTop();
 
 void main()
 {
@@ -15,7 +16,8 @@ void main()
         printf("Press 1 For push operation\n");
         printf("Press 2 For pop operation\n");
         printf("Press 3 For display operation\n");
-        printf("Press 4 For Exit operation\n");
+        printf("Press 4 For display Top operation\n");
+        printf("Press 5 For Exit operation\n");
         printf("-------------------------------------\n");
 
         scanf("%d", &choice);
@@ -33,12 +35,15 @@ void main()
             display();
             break;
         case 4:
+            displayTop();
+            break;
+        case 5:
             break;
         default:
             printf("Please enter a valid option\n");
             break;
         }
-    } while (choice != 4);
+    } while (choice != 5);
 }
 
 void push()
@@ -67,6 +72,17 @@ int pop()
     else
     {
         return stack[top--];
+    }
+}
+void displayTop(){
+     if (top == -1)
+    {
+        printf("Stack is underflowed\n");
+        return 0;
+    }
+    else
+    {
+        printf("Top element is:%d\n",stack[top]);
     }
 }
 void display()
