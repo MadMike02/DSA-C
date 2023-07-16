@@ -7,7 +7,7 @@ void main(){
     int count=0,capital_word=0,word_letter_count=0;
     bool isCapital=false;
     char str[100]={"HELLO world SAHIL KSHITIJ RaHUl"};
-    // printf("ENTER STRING\n");
+    printf("ENTER STRING\n");
     // gets(str); 
     //fgets(str,100,stdin) --->>>other way to take input
 
